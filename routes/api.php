@@ -22,6 +22,13 @@ Route::post('/email', [AuthController::class, 'index']);
 Route::post('send-verification-email', [AuthController::class, 'sendVerificationEmail']);
 Route::get('verify-email', [AuthController::class, 'verifyEmail'])->name('verifyEmail');
 
+Route::post('/salir', [AuthController::class, 'logout']);
+
+
+
+
+
+
 include __DIR__ . '/api/v1/routes.php';
 
 

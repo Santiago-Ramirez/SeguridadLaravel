@@ -24,18 +24,18 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: #1a202c;
+  background: #eeeeee;
   height: 100vh;
 }
 #login .container #login-row #login-column #login-box {
   margin-top: 120px;
-  max-width: 600px;
-  height: 300px;
+  max-width: 950px;
+  height: 515px;
   border: 1px solid #9C9C9C;
   background-color: #EAEAEA;
 }
 #login .container #login-row #login-column #login-box #login-form {
-  padding: 20px;
+  padding: 40px;
 }
 #login .container #login-row #login-column #login-box #login-form  {
   margin-top: -15px;
@@ -43,7 +43,7 @@ body {
 
 #register-link {
     margin-top: -35px;
-    margin-left:390px;
+    margin-left:300px;
 }
     </style>
 </head>
@@ -54,14 +54,18 @@ body {
 
 
         <div id="login">
-        <h3 class="text-center text-white pt-5">Iniciar Sesión MenyUba</h3>
+        <h3 class="text-center text-dark pt-5">Iniciar Sesión MenyUba</h3>
         <div class="container">
             <div id="login-row" class="row justify-content-center align-items-center">
                 <div id="login-column" class="col-md-6">
                     <div id="login-box" class="col-md-12">
                         <form id="login-form" class="form" action="register" method="POST">
                         @csrf
-                            <h3 class="text-center text-info ">Registrarse</h3>
+                            <h3 class="text-center text-info ">Registrar Usuarios</h3>
+                            <div class="form-group">
+                                <label for="nombre" class="text-info">Nombre:</label><br>
+                                <input type="text" id="typeEmailX" class="form-control form-control-lg" name="nombre" required>
+                            </div>
                             <div class="form-group">
                                 <label for="username" class="text-info">Correo Electronico:</label><br>
                                 <input type="email" id="typeEmailX" class="form-control form-control-lg" name="email" required>
@@ -82,13 +86,25 @@ body {
                                 <label for="password" class="text-info">Confirmar contraseña:</label><br>
                                 <input type="password" id="typePasswordX" class="form-control" name="password_confirmation" required/>
                             </div>
+<br>
+                            <div class="form-group">
+                            <!-- The second value will be selected initially -->
+                            <select name="select" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+                                <option selected>Eligue un privilegio</option>
+                                <option value="1">Bajo privilegio</option>
+                                <option value="2">Medio Privilegio</option>
+                                <option value="3">Alto Privilegio</option>
+                              </select>
+</div>
+
+
                             <span style="color:red;">@error('password')
                             {{$message}}
                             @enderror
                         </span>
                             <div class="form-group">
                                 <label for="remember-me" class="text-info"><span>Recordarme</span> <span><input id="remember-me" name="remember-me" type="checkbox"></span></label><br>
-                                <button type="submit" name="submit" class="btn btn-info btn-md">Registrarse</button>
+                                <button type="submit" name="submit" class="btn btn-info btn-md">Registrar Usuario</button>
                             </div>
                             <div id="register-link" class="text-right">
                                 <a href="login" class="text-info">Iniciar sesión aquí</a>
@@ -102,9 +118,20 @@ body {
 
       </section>
 
+<br><br><br><br>
+
+
+<h1 style="color: #eeeeee;">wf</h1>
+<h1 style="color: #eeeeee;">wf</h1>
+<h1 style="color: #eeeeee;">wf</h1>
+
+</body>
+</html>
+
+
 <script
     type="text/javascript"
     src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.10.2/mdb.min.js"
-></script>
-</body>
-</html>
+
+>	document.oncontextmenu = function(){return false}
+</script>

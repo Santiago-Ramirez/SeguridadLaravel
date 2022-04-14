@@ -29,7 +29,7 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: #1a202c;
+  background: #eeeeee;
   height: 100vh;
 }
 #login .container #login-row #login-column #login-box {
@@ -49,7 +49,7 @@ body {
 </head>
 <body>
     <div id="login">
-        <h3 class="text-center text-white pt-5">Iniciar Sesión MenyUba</h3>
+        <h3 class="text-center text-dark pt-5">Iniciar Sesión MenyUba</h3>
         <div class="container">
             <div id="login-row" class="row justify-content-center align-items-center">
                 <div id="login-column" class="col-md-6">
@@ -81,6 +81,8 @@ body {
                             <div id="register-link" class="text-right">
                                 <a href="register" class="text-info">Registrate aquí</a>
                             </div>
+
+
                         </form>
                     </div>
                 </div>

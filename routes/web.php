@@ -1,8 +1,11 @@
 <?php
 
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
-use Illuminate\Support\Facades\Auth;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -25,10 +28,15 @@ Route::middleware('guest')->group(function (){
 
 });
 
+// Route::get('/register', function () {
+//     return view('login')->with('user', Auth::user());
+// })->middleware('auth');
 
-Route::get('home', function () {
-    return view('home-view')->with('user', Auth::user());
-})->middleware('auth');
+
+
+Route::get('home', [AuthController::class, 'index2'])->middleware('auth');
+
+
 
 Route::get('code/{email}', function ($email) {
     return view('code-view')->with('email', $email);
@@ -42,5 +50,5 @@ Route::fallback(function () {
 
 Route::post('login', [AuthController::class, 'login']);
 Route::post('logout', [AuthController::class, 'logout'])->middleware('auth');
-Route::post('register', [AuthController::class, 'register']);
+Route::post('register', [AuthController::class, 'register'])->middleware('auth');
 Route::post('code/login-with-code', [AuthController::class, 'loginWithCode']);

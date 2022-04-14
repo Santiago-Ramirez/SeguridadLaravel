@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\URL;
 use SebastianBergmann\Environment\Console;
+use Illuminate\Support\Facades\DB;
+
 
 class AuthController extends Controller
 {
@@ -86,9 +88,12 @@ class AuthController extends Controller
         $code = rand(100000, 999999);
         $email = $request->input('email');
         $user = new User();
+        $user->nombre = $request->input('nombre');
         $user->email = $request->input('email');
         $user->one_time_code = $code;
         $user->password = Hash::make($request->input('password'));
+        $user->id_role = $request->input('select');
+
         if($user->save()){
             $this->sendVerificationEmail($email);
             return redirect('/login')->with('success', 'Por favor revise su correo electrónico para verificar su cuenta');
@@ -98,9 +103,6 @@ class AuthController extends Controller
 
     public function sendVerificationEmail($email="ubaldo_desantiago@hotmail.com"){
         $url = URL::temporarySignedRoute('verifyEmail', now()->addMinutes(30), ['email' => $email]);
-
-
-
         Mail::to($email)->send(new VerifyEmail($url));
         print_r($url);
     }
@@ -123,5 +125,14 @@ class AuthController extends Controller
         //return redirect('/login')->with('success', 'Your email has been verified');
 
     }
+
+    public function index2()
+   {
+    $usuarios = User::get();
+    return view('home-view')->with(compact('usuarios'));
+
+
+    }
+
 
 }
