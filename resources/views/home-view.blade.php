@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Bootstrap All in One Navbar</title>
+<title>UbaMeny</title>
 <link href="https://fonts.googleapis.com/css?family=Merienda+One" rel="stylesheet">
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -177,21 +177,26 @@
 			<li><a href="#" class="notifications"><i class="fa fa-bell-o"></i><span class="badge">1</span></a></li>
 			{{-- <li><a href="#" class="messages"><i class="fa fa-envelope-o"></i><span class="badge">10</span></a></li> --}}
 			<li class="dropdown">
-                @foreach ($usuarios as $usuario)
-
-				<a href="#" data-toggle="dropdown" class="dropdown-toggle user-action">{!! $usuario->nombre !!}<b class="caret"></b></a>
-                @endforeach
+          
+				<a href="#" data-toggle="dropdown" class="dropdown-toggle user-action">{{ auth()->user()->nombre }}<b class="caret"></b></a>
+               
 
 				<ul class="dropdown-menu">
 					{{-- <li><a href="#"><i class="fa fa-user-o"></i> Profile</a></li> --}}
 					{{-- <li><a href="#"><i class="fa fa-calendar-o"></i> Calendar</a></li> --}}
-					{{-- <li><a href="#"><i class="fa fa-sliders"></i> Settings</a></li> --}}
-					{{-- <li class="divider"></li> --}}
-                    <form action="logout" method="POST">
-                        @csrf
-                        <center><button type="submit" class=""><li><i class="material-icons">&#xE8AC;</i> Salir</li></button></center>
-                    </form>
-
+                    <li><a href="register"><i class="fa fa-user-o"></i> Registrar Usuarios</a></li> 
+					<li class="divider"></li>
+                            <li>
+                                <a  href="{{ URL('logout') }}"
+                                    onclick="event.preventDefault();
+                                    document.getElementById('logout-form').submit();">
+                                    <i class="material-icons">&#xE8AC;</i> 
+                                    Logout
+                                </a>
+                            </li>  
+                            <form id="logout-form" action="{{ URL('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
 
 
 				</ul>
@@ -210,6 +215,7 @@
           <tr>
             <th scope="col">Nombre</th>
             <th scope="col">Email</th>
+            <th scope="col">Correo Validado</th>
             <th scope="col">Fecha de registro</th>
             <th scope="col">Fecha de actualización</th>
             <th scope="col">Rol</th>
@@ -222,18 +228,43 @@
             @foreach ($usuarios as $usuario)
             <td>{!! $usuario->nombre !!}</td>
             <td>{!! $usuario->email !!}</td>
+            <td>{!! $usuario->email_verified_at !!}</td>
             <td>{!! $usuario->created_at !!}</td>
             <td>{!! $usuario->updated_at !!}</td>
             <td>{!! $usuario->id_role !!}</td>
-            <td><button class="btn btn-success btn-sm">EDITAR</button></td>
+
+
+
+            <td><a  href="{{ URL('editarUser',$usuario->id) }}"
+                onclick="event.preventDefault();
+                document.getElementById('logout-form2').submit();"
+                                class="btn btn-success btn-sm"
+                                >Editar
+            </a></td>
+
+
+
+            <form id="logout-form2" action="{{ URL('editarUser',$usuario->id) }}" method="GET" class="d-none">
+          
+            </form>
+
+
+
             <td><button class="btn btn-danger btn-sm">BORRAR</button></td>
+        
+            
           </tr>
 
         </tbody>
+
+
         @endforeach
 
       </table>
 </div>
+
+
+
 
 
 </body>

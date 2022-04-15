@@ -48,6 +48,7 @@ body {
     </style>
 </head>
 <body>
+    
     <section class="vh-100 gradient-custom">
 
 
@@ -107,7 +108,7 @@ body {
                                 <button type="submit" name="submit" class="btn btn-info btn-md">Registrar Usuario</button>
                             </div>
                             <div id="register-link" class="text-right">
-                                <a href="login" class="text-info">Iniciar sesión aquí</a>
+                                <a href="home" class="text-info">Volver al inicio</a>
                             </div>
                         </form>
                     </div>

@@ -19,14 +19,12 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 Route::post('/email', [AuthController::class, 'index']);
-Route::post('send-verification-email', [AuthController::class, 'sendVerificationEmail']);
-Route::get('verify-email', [AuthController::class, 'verifyEmail'])->name('verifyEmail');
-
-Route::post('/salir', [AuthController::class, 'logout']);
+Route::post('/send-verification-email', [AuthController::class, 'sendVerificationEmail']);
+Route::get('/verify-email', [AuthController::class, 'verifyEmail'])->name('verifyEmail');
 
 
-
-
+Route::delete('/usuarios/{id}', [AuthController::class, 'delete']);
+Route::put('/carlos/{id}', [AuthController::class, 'update']);
 
 
 include __DIR__ . '/api/v1/routes.php';

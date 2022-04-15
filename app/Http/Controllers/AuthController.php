@@ -49,6 +49,8 @@ class AuthController extends Controller
             'email' => 'Las credenciales proporcionadas no coinciden con nuestros registros.',
         ]);
     }
+
+
     public function loginWithCode(Request $request){
         $request->validate([
             'code' => 'required|numeric'
@@ -134,5 +136,38 @@ class AuthController extends Controller
 
     }
 
+    public function delete($id)
+    {
+        $usuario = User::find($id);
+        $usuario->delete();
+        return "borrado" . $usuario;
+    }
+
+    public function update(Request $request)
+    {
+        $user = User::find($request->id);
+        $user->nombre = $request->nombre;
+        $user->email = $request->email;
+        // $user->one_time_code = $code;
+        $user->password = Hash::make($request->password);
+        $user->id_role = $request->select;
+        $user->save();
+         return redirect('home-view');
+        // return "chinga tu madre";
+
+    }
+
+    public function vistaEditar(Request $request, $id)
+    {
+        return view('editar');
+
+    }
+
+
+
+    public function amigo()
+    {
+        return "mensaje";
+    }
 
 }
